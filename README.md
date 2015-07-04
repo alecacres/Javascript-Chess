@@ -1,2 +1,2 @@
 # Javascript-Chess
-A chess Javascript program.
+A chess program written in Javascript.
