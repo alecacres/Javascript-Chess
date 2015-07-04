@@ -1,0 +1,29 @@
+body{
+    background-color: grey;
+    margin: 0;
+}
+
+#board {
+    padding: 5px;
+    border: solid 5px white;
+    background-color: ;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.square {
+    display: inline-block;
+    margin: -2px;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+}
+
+.bk {
+    background-color: saddlebrown;
+}
+
+.wt {
+    background-color: lightgoldenrodyellow;
+}
