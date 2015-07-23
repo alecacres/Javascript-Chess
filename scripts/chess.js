@@ -6,14 +6,14 @@
         b,
         id,
         d = document,
-        convertColor = ["w", "b"], //used to give white and black number values (handy for finding the right coordinates on pieces.png)
-        convertType = [null, "P", "N", "B", "R", "Q", "K"], // same as above but for piece names (Pawn, kNight, Bishop, etc.)
-        board = [],
 		highlight,
         currentPath,
-        convertX = [0, "a", "b", "c", "d", "e", "f", "g", "h"],
         div,
-		whiteTurn;
+		whiteTurn,
+        board = [],
+        convertColor = ["w", "b"], //used to give white and black number values (handy for finding the right coordinates on pieces.png)
+        convertType = [null, "P", "N", "B", "R", "Q", "K"], // same as above but for piece names (Pawn, kNight, Bishop, etc.)
+        convertX = [0, "a", "b", "c", "d", "e", "f", "g", "h"];
 
     /*
     creates 8 arrays each containing 8 arrays that will be used to store and access piece location and color on the chess board
@@ -223,7 +223,7 @@
 
     function clear(x, y) {
         board[y][x].piece = 0;
-        d.getElementById(board[y][x].id).style.backgroundPositionX = "-200"
+        d.getElementById(board[y][x].id).style.backgroundPositionX = "-200";
 		d.getElementById(board[y][x].id).style.backgroundPositionY = "0";
     }
 	
@@ -238,13 +238,13 @@
 	
 	function clicked(almostX, y) {
         var isPathSquare = false,
+			x = convertX.indexOf(almostX),
             type,
-            color,
-			x = convertX.indexOf(almostX);
+            color;
 		//check if the clicked square is a potential move
         if (currentPath) {
 			for (i = 0; i < currentPath.length && !isPathSquare; i += 1) {
-				isPathSquare = currentPath[i] === (almostX + y);;
+				isPathSquare = currentPath[i] === (almostX + y);
 			}
 			if (isPathSquare) {
 				type = board[highlight.y][highlight.x].piece.type;
