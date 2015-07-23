@@ -6,7 +6,7 @@
         b,
         id,
         d = document,
-		highlight,
+        highlight,
         currentPath,
         div,
 		whiteTurn,
