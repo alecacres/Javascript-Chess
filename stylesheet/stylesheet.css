@@ -1,14 +1,24 @@
 body{
-    background-color: grey;
+    background-color: rgba(218, 220, 222, 1);
     margin: 0;
+}
+
+#boardContainer {
+    height: 500px;
+    display: -webkit-flex;
+    display:         flex;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-justify-content: center;
+            justify-content: center;
 }
 
 #board {
     padding: 5px;
     border: solid 5px white;
-    background-color: ;
-    width: 400px;
-    height: 400px;
+    background-color: white;
+    width: 398px;
+    height: 398px;
     overflow: hidden;
 }
 
@@ -21,9 +31,9 @@ body{
 }
 
 .bk {
-    background-color: saddlebrown;
+    background-color: rgba(0, 26, 53, 1);
 }
 
 .wt {
-    background-color: lightgoldenrodyellow;
+    background-color: rgba(94, 157, 222, 1);
 }
