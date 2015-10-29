@@ -29,7 +29,7 @@ for (y = 1; y < 9; y += 1) {
         board[y][x] = {"id": convertX[x] + y, "piece": 0, "emptyBoardPathFor": []};
         div = d.createElement("DIV");
         div.setAttribute("class", "square");
-        d.getElementById(board[y][x].id).style.backgroundImage = "url('sprites/pieces.png')";
+        d.getElementById(board[y][x].id).style.backgroundImage = "url('http://i.imgur.com/ktGfpM4.png')";
         d.getElementById(board[y][x].id).style.backgroundPosition = "0 -200";
     }
 }
