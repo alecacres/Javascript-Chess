@@ -1,4 +1,3 @@
-"use strict";
 var x,
     y,
     i,
