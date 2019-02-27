@@ -275,6 +275,15 @@ function clicked(convertedY, x) {
             }
             spawn(x, y, standardBoard, value, color, identifier);
 			whiteTurn = !whiteTurn;
+            check = inCheck(king.x, king.y, standardBoard, switchColor(color));
+            if (check) {
+                if (checkmate(standardBoard, switchColor(color))) {
+                    console.log("Checkmate " + color);
+                } else {
+                    console.log("Check");
+                }
+            }
+
 		}
 		clearHighlight();
 		currentPath = "";
@@ -296,6 +305,61 @@ function clicked(convertedY, x) {
         }
     }
 	return;
+}
+
+function inCheck(x, y, board, color, debug) {
+    return pieces.filter(piece => {
+        if (debug) console.log(piece);
+        return piece.color !== color;
+    }).map(piece => {
+        return findPath(piece.x, piece.y, board);
+    }).some(path => {
+        return path.some(square => {
+            return square.x === x && convertY.indexOf(square.y) === y;
+        });
+    });
+}
+
+function checkmate(board, color) {
+    let attackedColor = pieces.filter(piece => {
+        return piece.color === color;
+    });
+    let king = attackedColor.filter(piece => {
+        return piece.value === KING;
+    })[0];
+
+    let testBoard = copyBoard(board);
+
+    let stillInCheck;
+    let piece;
+    let value;
+
+    if (inCheck(king.x, king.y, testBoard, color)) {
+        return attackedColor.every(attackedPiece => {
+            return findPath(attackedPiece.x, attackedPiece.y, testBoard).every(square => {
+                let x = square.x;
+                let y = convertY.indexOf(square.y);
+                let boardSquare = testBoard[x][y];
+                piece = testBoard[attackedPiece.x][attackedPiece.y].piece;
+                boardSquare.piece = {};
+                boardSquare.piece.color = piece.color;
+                value = boardSquare.piece.value = piece.value;
+                boardSquare.piece.identifier = piece.identifier;
+                boardSquare.piece.moved = true;
+                testBoard[attackedPiece.x][attackedPiece.y].piece = 0;
+                if (value === KING) {
+                    stillInCheck = inCheck(x, y, testBoard, color);
+                } else {
+                    stillInCheck = inCheck(king.x, king.y, testBoard, color, true);
+                }
+
+                testBoard = copyBoard(board);
+                return stillInCheck;
+            });
+        });
+    } else {
+        return false;
+    }
 }
 
 function newBoard(board) {
